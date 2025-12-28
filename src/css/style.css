@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* Gri-50 */
+}
+
+.hidden-view {
+    display: none !important;
+}
+
+.loading {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+}
+
+/* Light Mode Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    transition: opacity 0.3s ease;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printArea, #printArea * {
+        visibility: visible;
+    }
+    #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: block !important;
+        background: white;
+        color: black;
+    }
+}
+
+/* MODAL ANİMASYONLARI */
+/* Başlangıç durumu: Görünmez ve hafif küçük */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    
+    /* Animasyon Geçiş Ayarları */
+    opacity: 0;
+    visibility: hidden; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* İçindeki beyaz kartın başlangıç durumu */
+.modal-backdrop > div {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Yumuşak yaylanma efekti */
+}
+
+/* AKTİF DURUM (JavaScript ile eklenecek) */
+.modal-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop.show > div {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* hidden-view sınıfını override etmemiz lazım ki animasyon çalışsın */
+.modal-backdrop.hidden-view {
+    display: flex !important; /* Flex yapısını koru ama görünmez yap */
+    visibility: hidden;
+    pointer-events: none; /* Tıklamayı engelle */
+}

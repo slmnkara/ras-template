@@ -1,2 +1,2 @@
 # sk-ras
-Residential Accounting System by Suleyman Kara.
+Residential Accounting System
