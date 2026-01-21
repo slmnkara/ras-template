@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. YÖNETİCİLER (Tam Erişim - Sadece kendi verisine)
+    match /yoneticiler/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // 2. SAKİN GÖRÜNTÜLEME (Sadece Okuma)
+    // Değişiklik: "if true" yerine "if request.auth != null" yaptık.
+    // Bu sayede dış dünyadan herhangi biri veriyi çekemez, sadece uygulamanız üzerinden
+    // anonim giriş yapmış kişiler (veya yöneticiler) okuyabilir.
+    match /{path=**}/meskenler/{meskenId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    
+    // 3. GENEL KİLİT
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
