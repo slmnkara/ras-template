@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası ve KVKK - BinamPratik</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#4f46e5', hover: '#4338ca', light: '#eef2ff' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/553/553416.png">
+</head>
+
+<body class="bg-slate-50 font-sans text-slate-700 antialiased">
+
+    <nav class="bg-white border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="font-bold text-lg text-slate-900">BinamPratik</a>
+            <a href="/app" class="text-sm font-medium text-primary hover:text-indigo-700">Uygulamaya Dön</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100">
+            <h1 class="text-3xl font-bold text-slate-900 mb-2">Gizlilik Politikası ve KVKK Aydınlatma Metni</h1>
+            <p class="text-sm text-slate-400 mb-8">Son güncelleme: 21 Ocak 2026</p>
+
+            <div
+                class="prose prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-primary">
+                <h3>1. Veri Sorumlusu</h3>
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, kişisel verileriniz BinamPratik
+                    ("Şirket") tarafından aşağıda açıklanan kapsamda işlenebilecektir.</p>
+
+                <h3>2. İşlenen Kişisel Veriler</h3>
+                <p>Hizmetimizi kullandığınızda şu verileriniz işlenebilir:</p>
+                <ul>
+                    <li>Kimlik Bilgileri: Ad, Soyad.</li>
+                    <li>İletişim Bilgileri: E-posta adresi, telefon numarası.</li>
+                    <li>Apartman/Site Bilgileri: Apartman adı, daire sayısı, adres.</li>
+                    <li>Sakin Bilgileri: Apartman sakinlerinin ad-soyad ve borç bilgileri.</li>
+                    <li>İşlem Güvenliği Bilgileri: IP adresi, log kayıtları, şifre bilgileri.</li>
+                </ul>
+
+                <h3>3. Kişisel Verilerin İşlenme Amacı</h3>
+                <p>Kişisel verileriniz; apartman yönetim hizmetlerinin sunulması, kullanıcı kaydının oluşturulması,
+                    yasal yükümlülüklerin yerine getirilmesi, hizmet kalitesinin artırılması ve iletişimin sağlanması
+                    amacıyla işlenmektedir.</p>
+
+                <h3>4. Verilerin Aktarılması</h3>
+                <p>Kişisel verileriniz, yasal zorunluluklar haricinde üçüncü kişilerle paylaşılmamaktadır. Veritabanı
+                    hizmeti Google Firebase (Google Cloud) altyapısı üzerinde güvenli bir şekilde tutulmaktadır.</p>
+
+                <h3>5. Veri Sahibinin Hakları</h3>
+                <p>KVKK’nın 11. maddesi uyarınca herkes veri sorumlusuna başvurarak kendisiyle ilgili;</p>
+                <ul>
+                    <li>Kişisel veri işlenip işlenmediğini öğrenme,</li>
+                    <li>Kişisel verileri işlenmişse buna ilişkin bilgi talep etme,</li>
+                    <li>Kişisel verilerin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme,
+                    </li>
+                    <li>Kişisel verilerin silinmesini veya yok edilmesini isteme hakkına sahiptir.</li>
+                </ul>
+
+                <p>Talepleriniz için <a href="mailto:kvkk@binampratik.com">kvkk@binampratik.com</a> adresinden bize
+                    ulaşabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-8 text-sm text-slate-400">
+        &copy; 2026 BinamPratik. Tüm hakları saklıdır.
+    </footer>
+</body>
+
+</html>

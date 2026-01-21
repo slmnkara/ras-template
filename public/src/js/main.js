@@ -74,13 +74,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Gerçek Yönetici Girişi
                 console.log("Yönetici girişi başarılı.");
-                const hasAccess = await dbService.checkAndInitUser(state.user);
 
-                if (hasAccess) {
-                    dbService.listenData();
-                    ui.showDashboard();
+                // 1. Önce kullanıcı dökümanı ve onboarding durumu kontrol et
+                const userDoc = await dbService.checkUserDoc(state.user.uid);
+
+                if (userDoc && userDoc.onboarding_completed) {
+                    // 2. Onboarding Tamam ise Abonelik Kontrolü Yap
+                    const hasAccess = await dbService.checkAndInitUser(state.user);
+
+                    if (hasAccess) {
+                        dbService.listenData();
+                        ui.showDashboard();
+                    } else {
+                        ui.showSubscriptionLocked();
+                    }
                 } else {
-                    ui.showSubscriptionLocked();
+                    // 3. Onboarding Gerekli
+                    console.log("Onboarding gerekli...");
+                    // AuthUI içindeki showOnboarding metodunu çağır
+                    ui.authUI.showOnboarding();
                 }
 
             }

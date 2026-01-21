@@ -2,10 +2,10 @@ import { db, auth } from "../firebase-config.js";
 import {
     collection, doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc,
     onSnapshot, runTransaction, serverTimestamp, setDoc,
-    query, orderBy, limit, where
+    query, orderBy, limit, where, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { eventBus } from "../core/EventManager.js";
-import { store } from "../core/Store.js"; // <--- STORE EKLENDİ
+import { store } from "../core/Store.js";
 
 class DbService {
     constructor() {
@@ -129,25 +129,67 @@ class DbService {
     }
 
     // KULLANICI / ABONELİK KONTROLÜ
+    async checkUserDoc(uid) {
+        if (!uid) return null;
+        const userRef = doc(db, 'yoneticiler', uid);
+        const docSnap = await getDoc(userRef);
+        return docSnap.exists() ? docSnap.data() : null;
+    }
+
+    async completeOnboarding(user, aptName, unitCount, consentData) {
+        const userRef = doc(db, 'yoneticiler', user.uid);
+        const today = new Date();
+        const endDate = new Date();
+        endDate.setDate(today.getDate() + 30);
+
+        const userData = {
+            email: user.email,
+            apartman_adi: aptName,
+            daire_sayisi: Number(unitCount),
+            kayit_tarihi: today.toISOString(),
+            abonelik_bitis: endDate.toISOString(),
+            abonelik_tipi: 'trial',
+            resim_yukleme: false,
+            consent: consentData,
+            onboarding_completed: true
+        };
+
+        if (Number(unitCount) > 100) {
+            throw new Error("Maksimum daire sayısı (100) aşıldı.");
+        }
+
+        // Batch write for atomicity
+        const batch = writeBatch(db);
+        batch.set(userRef, userData);
+
+        // Firestore batch limit 500.
+        for (let i = 1; i <= unitCount; i++) {
+            const flatRef = doc(collection(db, `yoneticiler/${user.uid}/meskenler`));
+            batch.set(flatRef, {
+                sakin_adi: `Daire ${i}`,
+                kod: i,
+                mesken_url: Math.random().toString(36).substring(2, 12),
+                borclar: [],
+                odemeler: [],
+                aktif_mi: true,
+                created_at: serverTimestamp()
+            });
+        }
+
+        await batch.commit();
+
+        // Init store
+        store.setSubscription(userData);
+        store.setUser(user);
+        return true;
+    }
     async checkAndInitUser(user) {
         const userRef = doc(db, 'yoneticiler', user.uid);
         const docSnap = await getDoc(userRef);
         let userData;
 
         if (!docSnap.exists()) {
-            // YENİ KULLANICI
-            const today = new Date();
-            const endDate = new Date();
-            endDate.setDate(today.getDate() + 30);
-
-            userData = {
-                email: user.email,
-                kayit_tarihi: today.toISOString(),
-                abonelik_bitis: endDate.toISOString(),
-                abonelik_tipi: 'trial',
-                resim_yukleme: false
-            };
-            await setDoc(userRef, userData);
+            return null; // Onboarding gerekli
         } else {
             userData = docSnap.data();
         }

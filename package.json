@@ -1,0 +1,28 @@
+{
+  "name": "sk-ras",
+  "version": "1.0.0",
+  "description": "Residential Accounting System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./public/src/css/design-system.css -o ./public/src/css/styles.css",
+    "dev:css": "tailwindcss -i ./public/src/css/design-system.css -o ./public/src/css/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slmnkara/sk-ras.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/slmnkara/sk-ras/issues"
+  },
+  "homepage": "https://github.com/slmnkara/sk-ras#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}
