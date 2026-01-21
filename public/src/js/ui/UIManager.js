@@ -10,6 +10,7 @@ import { commandManager } from "../core/CommandManager.js";
 import { ModalUtils } from "../core/ModalUtils.js";
 import { formatTimestamp } from "../core/DomUtils.js";
 import { AuditLogUI } from "./components/AuditLogUI.js";
+import { APP_CONFIG } from "../config.js";
 
 export class UIManager {
     constructor() {
@@ -158,9 +159,6 @@ export class UIManager {
     showSubscriptionLocked() {
         eventBus.publish('SHOW_LOADING', false);
 
-        // BURAYI KENDİ BİLGİLERİNE GÖRE DÜZENLE
-        const CONTACT_EMAIL = "karasuleyman125@gmail.com"; // Veya kendi mailin
-
         document.body.innerHTML = `
             <div class="min-h-screen bg-slate-900 flex items-center justify-center p-4">
                 <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
@@ -169,6 +167,12 @@ export class UIManager {
                     </div>
                     <h2 class="text-2xl font-bold text-slate-800 mb-2">Süreniz Doldu</h2>
                     <p class="text-slate-500 mb-6">Hizmeti kullanmaya devam etmek için lütfen yönetici ile iletişime geçerek aboneliğinizi yenileyin.</p>
+                    <a href="mailto:${APP_CONFIG.contact.email}" 
+                       class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-semibold transition-all">
+                        <i class="fas fa-envelope"></i>
+                        İletişime Geç
+                    </a>
+                    <p class="text-xs text-slate-400 mt-4">${APP_CONFIG.contact.email}</p>
                 </div>
             </div>
         `;

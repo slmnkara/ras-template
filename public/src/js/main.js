@@ -2,9 +2,18 @@ import { dbService } from "./services/DbService.js";
 import { authService } from "./services/AuthService.js";
 import { eventBus } from "./core/EventManager.js";
 import { UIManager } from "./ui/UIManager.js";
+import { APP_CONFIG } from "./config.js";
 
 // Uygulama Başlatıcı
 document.addEventListener('DOMContentLoaded', async () => {
+    // 0. Uygulama Bilgilerini DOM'a Yerleştir
+    document.title = APP_CONFIG.name;
+
+    // data-app-* attribute'larını doldur
+    document.querySelectorAll('[data-app-name]').forEach(el => el.textContent = APP_CONFIG.name);
+    document.querySelectorAll('[data-app-description]').forEach(el => el.textContent = APP_CONFIG.description);
+    document.querySelectorAll('[data-app-version]').forEach(el => el.textContent = `v${APP_CONFIG.version}`);
+
     // 1. UI Yöneticisini Başlat
     const ui = new UIManager();
 
@@ -16,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // --- SAKİN GÖRÜNÜMÜ ---
         console.log("Sakin linki algılandı...");
         ui.toggleGlobalLoading(true);
-        
+
         try {
             // Eğer zaten bir oturum varsa ama Anonim değilse (Yönetici ise), önce çıkış yap
             // Çünkü sakin linkine tıklayan kişi sakin olarak girmeli.
@@ -28,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             await authService.loginAnonymously();
 
             const data = await dbService.getResidentByUrl(residentUrl);
-            
+
             if (data) {
                 ui.renderResidentView(data);
             } else {
@@ -47,13 +56,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     } else {
         // --- YÖNETİCİ GİRİŞİ ---
-        
+
         // Auth Durumunu Dinle
         eventBus.subscribe('AUTH_STATE_CHANGED', async (state) => {
-            
+
             // SENARYO 1: Kullanıcı Giriş Yapmış
             if (state.isLoggedIn) {
-                
+
                 // HATA DÜZELTMESİ BURADA:
                 // Eğer giriş yapmış ama "Anonim" ise, bu bir Yönetici değildir!
                 // Muhtemelen eski bir sakin oturumu kalmıştır. Çıkış yapıp login ekranını gösterelim.
@@ -74,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ui.showSubscriptionLocked();
                 }
 
-            } 
+            }
             // SENARYO 2: Kullanıcı Yok (Login Ekranı)
             else {
                 console.log("Kullanıcı yok, giriş ekranı gösteriliyor.");
