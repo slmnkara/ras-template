@@ -3,12 +3,13 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDQvOKkB3qifOq7TVUgoPwjIf9WmJBmLj0",
-    authDomain: "apt-yonetimi-a6713.firebaseapp.com",
-    projectId: "apt-yonetimi-a6713",
-    storageBucket: "apt-yonetimi-a6713.firebasestorage.app",
-    messagingSenderId: "93448629214",
-    appId: "1:93448629214:web:e3de7671f3873cf40a0b4f"
+    apiKey: "AIzaSyDQEVm6oMaiDLeO_3HiofKLGGLGulQWxog",
+    authDomain: "binampratik.firebaseapp.com",
+    projectId: "binampratik",
+    storageBucket: "binampratik.firebasestorage.app",
+    messagingSenderId: "296772351316",
+    appId: "1:296772351316:web:409cc4bbc47b46e76644c1",
+    measurementId: "G-JDVEFHGGB8"
 };
 
 const app = initializeApp(firebaseConfig);
