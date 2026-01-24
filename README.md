@@ -1,7 +1,7 @@
 # BinamPratik - Açık Kaynak Apartman Yönetim Sistemi
 
 **DURUM: GELİŞTİRİLME DURDURULDU**
-Bu projenin geliştirilmesi, yazılan kodların tutarsız olma ihtimali nedeniyle durdurulmuştur.
+Bu projenin geliştirilmesi, yazılan kodların tutarsız olması nedeniyle durdurulmuştur.
 
 **Proje Hakkında**
 BinamPratik, apartman ve site yöneticileri için geliştirilmiş; aidat takibi, gelir-gider yönetimi ve sakin iletişimini sağlayan web tabanlı bir uygulamadır. Firebase altyapısı üzerinde çalışır ve sunucu maliyeti olmadan kullanılabilir.
