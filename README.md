@@ -1,10 +1,8 @@
 # ras-template
 
-A web-based application designed for apartment and residential complex managers to track dues, manage income and expenses, and communicate with residents.
+A web-based application designed for apartment and residential complex managers to track dues, manage income and expenses, and communicate with residents. Try the [live demo](https://ras-template.web.app/).
 
-## Website
 ![Dashboard Preview](public/screenshot.png)
-[Live Demo](https://ras-template.web.app/)
 
 ## Features
 - Apartment and Resident Management
