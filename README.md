@@ -3,6 +3,7 @@
 A web-based application designed for apartment and residential complex managers to track dues, manage income and expenses, and communicate with residents.
 
 ## Website
+![Dashboard Preview](public/screenshot.png)
 [Live Demo](https://ras-template.web.app/)
 
 ## Features
