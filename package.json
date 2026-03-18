@@ -1,7 +1,5 @@
 {
-  "name": "sk-ras",
-  "version": "1.0.0",
-  "description": "Residential Accounting System",
+  "name": "ras-template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slmnkara/sk-ras.git"
+    "url": "git+https://github.com/slmnkara/ras-template.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/slmnkara/sk-ras/issues"
+    "url": "https://github.com/slmnkara/ras-template/issues"
   },
-  "homepage": "https://github.com/slmnkara/sk-ras#readme",
+  "homepage": "https://github.com/slmnkara/ras-template#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
